@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_desktop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#737077"
+    tools:context="com.hoperincorp.android.fitnesschallenge.frames.desktopFrame">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/panel_setting"
+        android:background="@mipmap/panel_setting"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/panel_back"
+        android:background="@mipmap/panel_backward"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="87dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/panel_next"
+        android:background="@mipmap/panel_next"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_first"
+        android:background="@mipmap/note_add"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_second"
+        android:background="@mipmap/note_add"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_fourth"
+        android:background="@mipmap/note_add"
+        android:layout_below="@+id/note_first"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_sixth"
+        android:background="@mipmap/note_add"
+        android:layout_alignTop="@+id/note_fifth"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/panel_prev"
+        android:background="@mipmap/panel_prev"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/note_ninth" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_third"
+        android:background="@mipmap/note_add"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_seventh"
+        android:background="@mipmap/note_add"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/note_fourth"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_eighth"
+        android:background="@mipmap/note_add"
+        android:layout_alignTop="@+id/note_seventh"
+        android:layout_alignStart="@+id/note_second" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_ninth"
+        android:background="@mipmap/note_add"
+        android:layout_alignTop="@+id/note_eighth"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_fifth"
+        android:background="@mipmap/note_add"
+        android:layout_alignTop="@+id/note_fourth"
+        android:layout_alignStart="@+id/note_second" />
+
+</RelativeLayout>
