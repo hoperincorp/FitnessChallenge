@@ -21,8 +21,17 @@
         </activity>
 
         <activity
-            android:name=".frames.addNoteFrame"
-            android:label="Add new challenge">
+            android:name=".frames.challengesFrame"
+            android:label="Choose your challenge">
+            <intent-filter>
+                <action android:name="android.intent.action.challengemenu" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".frames.newChallengeFrame"
+            android:label="Create new challenge">
             <intent-filter>
                 <action android:name="android.intent.action.newchallenge" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -30,10 +39,10 @@
         </activity>
 
         <activity
-            android:name=".frames.noteFrame"
-            android:label="Add new challenge">
+            android:name=".frames.currentChallengeFrame"
+            android:label="Track your challenge">
             <intent-filter>
-                <action android:name="android.intent.action.note" />
+                <action android:name="android.intent.action.trackchallenge" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

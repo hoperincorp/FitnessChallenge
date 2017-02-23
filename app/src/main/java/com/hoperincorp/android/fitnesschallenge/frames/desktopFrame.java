@@ -22,7 +22,7 @@ public class desktopFrame extends AppCompatActivity {
 
         backward.setOnClickListener(new View.OnClickListener() {
                                         public void onClick(View v) {
-                                            Intent intent = new Intent("android.intent.action.newchallenge");
+                                            Intent intent = new Intent("android.intent.action.challengemenu");
                                             startActivity(intent);
                                         }
                                     }
