@@ -29,6 +29,15 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".frames.noteFrame"
+            android:label="Add new challenge">
+            <intent-filter>
+                <action android:name="android.intent.action.note" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
 
     </application>
 
