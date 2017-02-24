@@ -12,23 +12,15 @@ import android.widget.ImageButton;
 
 import com.hoperincorp.android.fitnesschallenge.R;
 
+import static com.hoperincorp.android.fitnesschallenge.frames.challengesFrame.testPage;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.APP_PREFERENCES;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.debug;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentNoteName;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentPage;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.setChallengeName;
 
 public class currentChallengeFrame extends AppCompatActivity {
     private SharedPreferences mSettings;
-
-    //region TEST NOTE
-
-    private void testNote(String note, int status) {
-        SharedPreferences.Editor editor = mSettings.edit();
-        editor.putInt(note, status);
-        editor.apply();
-    }
-
-    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +38,9 @@ public class currentChallengeFrame extends AppCompatActivity {
 
         panel_accept.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
-                                                testNote(getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)), 1);
+                                                SharedPreferences.Editor editor = mSettings.edit();
+                                                editor.putInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)), 1);
+                                                editor.apply();
                                                 Intent intent = new Intent("android.intent.action.challengemenu");
                                                 startActivity(intent);
                                             }
@@ -55,7 +49,9 @@ public class currentChallengeFrame extends AppCompatActivity {
 
         panel_delete.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
-                                                testNote(getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)), 0);
+                                                SharedPreferences.Editor editor = mSettings.edit();
+                                                editor.putInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)), 0);
+                                                editor.apply();
                                                 setChallengeName(mSettings, "Нет записи");
                                                 Intent intent = new Intent("android.intent.action.challengemenu");
                                                 startActivity(intent);

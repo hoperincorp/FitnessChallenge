@@ -2,7 +2,6 @@ package com.hoperincorp.android.fitnesschallenge.libraries;
 
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -14,6 +13,113 @@ import com.hoperincorp.android.fitnesschallenge.R;
 
 public class noteLibrary {
     public static final String APP_PREFERENCES = "FitnessChallenger";
+
+    //region PAGER
+
+    public static void pager(TextView currentPage, String text) {
+        currentPage.setText(text);
+    }
+
+
+    //endregion
+
+
+    //region GET CURRENT PAGE
+
+    public static String getCurrentPage(int sCurrentPage) {
+        String thisPage = "";
+        switch (sCurrentPage) {
+            case 1:
+                thisPage = "FIRST_";
+                break;
+            case 2:
+                thisPage = "SECOND_";
+                break;
+            case 3:
+                thisPage = "THIRD_";
+                break;
+            case 4:
+                thisPage = "FOURTH_";
+                break;
+            case 5:
+                thisPage = "FIVTH_";
+                break;
+            case 6:
+                thisPage = "SIXTH_";
+                break;
+            case 7:
+                thisPage = "SEVENTH_";
+                break;
+            case 8:
+                thisPage = "EIGHTH_";
+                break;
+            case 9:
+                thisPage = "NINTH_";
+                break;
+        }
+        return thisPage;
+    }
+
+    //endregion
+
+
+    //region SAVE CURRENT PAGE
+
+    public static void saveCurrentPage(SharedPreferences mSettings, String sCurrentPage) {
+        SharedPreferences.Editor editor = mSettings.edit();
+        switch (sCurrentPage) {
+            case "FIRST_":
+                editor.putInt("CURRENT_PAGE", 1);
+                editor.apply();
+                break;
+            case "SECOND_":
+                editor.putInt("CURRENT_PAGE", 2);
+                editor.apply();
+                break;
+            case "THIRD_":
+                editor.putInt("CURRENT_PAGE", 3);
+                editor.apply();
+                break;
+            case "FOURTH_":
+                editor.putInt("CURRENT_PAGE", 4);
+                editor.apply();
+                break;
+            case "FIVTH_":
+                editor.putInt("CURRENT_PAGE", 5);
+                editor.apply();
+                break;
+            case "SIXTH_":
+                editor.putInt("CURRENT_PAGE", 6);
+                editor.apply();
+                break;
+            case "SEVENTH_":
+                editor.putInt("CURRENT_PAGE", 7);
+                editor.apply();
+                break;
+            case "EIGHTH_":
+                editor.putInt("CURRENT_PAGE", 8);
+                editor.apply();
+                break;
+            case "NINTH_":
+                editor.putInt("CURRENT_PAGE", 9);
+                editor.apply();
+                break;
+        }
+    }
+
+    //endregion
+
+    //region TEST THIS PAGE
+
+    public static String testThisPage(int currentPage) {
+        String testPage = "";
+        if (currentPage == 1) testPage = "FIRST_";
+        else if (currentPage == 2) testPage = "SECOND_";
+        return testPage;
+    }
+
+    //endregion
+
 
     //region SET CURRENT NOTE
 
@@ -147,17 +253,17 @@ public class noteLibrary {
     //endregion
 
     //region GET EXIST NOTE
-    public static void getExistNote(SharedPreferences mSettings, ImageButton note_first, ImageButton note_second, ImageButton note_third, ImageButton note_fourth,
+    public static void getExistNote(int thisPage, SharedPreferences mSettings, ImageButton note_first, ImageButton note_second, ImageButton note_third, ImageButton note_fourth,
                                     ImageButton note_fivth, ImageButton note_sixth, ImageButton note_seventh, ImageButton note_eighth, ImageButton note_ninth) {
-        getImageToDraw(mSettings.getInt("FIRST_NOTE", 0), note_first);
-        getImageToDraw(mSettings.getInt("SECOND_NOTE", 0), note_second);
-        getImageToDraw(mSettings.getInt("THIRD_NOTE", 0), note_third);
-        getImageToDraw(mSettings.getInt("FOURTH_NOTE", 0), note_fourth);
-        getImageToDraw(mSettings.getInt("FIVTH_NOTE", 0), note_fivth);
-        getImageToDraw(mSettings.getInt("SIXTH_NOTE", 0), note_sixth);
-        getImageToDraw(mSettings.getInt("SEVENTH_NOTE", 0), note_seventh);
-        getImageToDraw(mSettings.getInt("EIGHTH_NOTE", 0), note_eighth);
-        getImageToDraw(mSettings.getInt("NINTH_NOTE", 0), note_ninth);
+        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "FIRST_NOTE", 0), note_first);
+        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "SECOND_NOTE", 0), note_second);
+        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "THIRD_NOTE", 0), note_third);
+        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "FOURTH_NOTE", 0), note_fourth);
+        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "FIVTH_NOTE", 0), note_fivth);
+        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "SIXTH_NOTE", 0), note_sixth);
+        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "SEVENTH_NOTE", 0), note_seventh);
+        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "EIGHTH_NOTE", 0), note_eighth);
+        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "NINTH_NOTE", 0), note_ninth);
     }
 
     //endregion

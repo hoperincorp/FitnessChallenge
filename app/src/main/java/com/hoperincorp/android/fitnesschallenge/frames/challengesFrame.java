@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -17,11 +16,24 @@ import com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary;
 
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.APP_PREFERENCES;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.debug;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentNoteName;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getExistName;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getExistNote;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentPage;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.pager;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.saveCurrentPage;
 
 public class challengesFrame extends AppCompatActivity {
     private SharedPreferences mSettings;
+    private int workingPage = 1;
+    public static String testPage = "FIRST_";
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveCurrentPage(mSettings, getCurrentPage(workingPage));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +44,9 @@ public class challengesFrame extends AppCompatActivity {
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
         final ImageButton panel_backward = (ImageButton) findViewById(R.id.panel_backward);
+        final ImageButton panel_next = (ImageButton) findViewById(R.id.panel_next);
+        final ImageButton panel_prev = (ImageButton) findViewById(R.id.panel_prev);
+        final TextView page = (TextView) findViewById(R.id.pageCurrent);
 
         TextView nameFirst = (TextView) findViewById(R.id.name_first);
         TextView nameSecond = (TextView) findViewById(R.id.name_second);
@@ -43,18 +58,22 @@ public class challengesFrame extends AppCompatActivity {
         TextView nameEighth = (TextView) findViewById(R.id.name_eighth);
         TextView nameNinth = (TextView) findViewById(R.id.name_ninth);
 
-        ImageButton note_first = (ImageButton) findViewById(R.id.note_first);
-        ImageButton note_second = (ImageButton) findViewById(R.id.note_second);
-        ImageButton note_third = (ImageButton) findViewById(R.id.note_third);
-        ImageButton note_fourth = (ImageButton) findViewById(R.id.note_fourth);
-        ImageButton note_fivth = (ImageButton) findViewById(R.id.note_fifth);
-        ImageButton note_sixth = (ImageButton) findViewById(R.id.note_sixth);
-        ImageButton note_seventh = (ImageButton) findViewById(R.id.note_seventh);
-        ImageButton note_eighth = (ImageButton) findViewById(R.id.note_eighth);
-        ImageButton note_ninth = (ImageButton) findViewById(R.id.note_ninth);
+        final ImageButton note_first = (ImageButton) findViewById(R.id.note_first);
+        final ImageButton note_second = (ImageButton) findViewById(R.id.note_second);
+        final ImageButton note_third = (ImageButton) findViewById(R.id.note_third);
+        final ImageButton note_fourth = (ImageButton) findViewById(R.id.note_fourth);
+        final ImageButton note_fivth = (ImageButton) findViewById(R.id.note_fifth);
+        final ImageButton note_sixth = (ImageButton) findViewById(R.id.note_sixth);
+        final ImageButton note_seventh = (ImageButton) findViewById(R.id.note_seventh);
+        final ImageButton note_eighth = (ImageButton) findViewById(R.id.note_eighth);
+        final ImageButton note_ninth = (ImageButton) findViewById(R.id.note_ninth);
 
-        getExistNote(mSettings, note_first, note_second, note_third, note_fourth, note_fivth, note_sixth, note_seventh, note_eighth, note_ninth);
+        getExistNote(mSettings.getInt("CURRENT_PAGE", 0), mSettings, note_first, note_second, note_third, note_fourth, note_fivth, note_sixth, note_seventh, note_eighth, note_ninth);
         getExistName(mSettings, nameFirst, nameSecond, nameThird, nameFourth, nameFivth, nameSixth, nameSeventh, nameEighth, nameNinth);
+
+        workingPage = mSettings.getInt("CURRENT_PAGE", 0);
+        pager(page, workingPage + "");
+
 
         panel_backward.setOnClickListener(new View.OnClickListener() {
                                               public void onClick(View v) {
@@ -64,18 +83,38 @@ public class challengesFrame extends AppCompatActivity {
                                           }
         );
 
+        panel_next.setOnClickListener(new View.OnClickListener() {
+                                          public void onClick(View v) {
+                                              if ((workingPage >= 1) && (workingPage < 9)) workingPage++;
+                                              page.setText(workingPage + "");
+                                              getExistNote(workingPage, mSettings, note_first, note_second, note_third, note_fourth, note_fivth, note_sixth, note_seventh, note_eighth, note_ninth);
+                                              saveCurrentPage(mSettings, getCurrentPage(workingPage));
+                                          }
+                                      }
+        );
+
+        panel_prev.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if ((workingPage > 1) && (workingPage <= 9)) workingPage--;
+                page.setText(workingPage + "");
+                getExistNote(workingPage, mSettings, note_first, note_second, note_third, note_fourth, note_fivth, note_sixth, note_seventh, note_eighth, note_ninth);
+                saveCurrentPage(mSettings, getCurrentPage(workingPage));
+                                              }
+                                          }
+        );
+
         note_first.setOnClickListener(new View.OnClickListener() {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "FIRST_NOTE", 0);
                                               noteLibrary.setCurrentNote(mSettings, "FIRST_NOTE");
-                                              debug(mSettings.getInt("FIRST_NOTE", 0) + "");
-                                              if (mSettings.getInt("FIRST_NOTE", 0) <= 0) {
+                                              if (mSettings.getInt(getCurrentPage(workingPage) + "FIRST_NOTE", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
-                                              } else if (mSettings.getInt("FIRST_NOTE", 0) > 0) {
+                                              } else if (mSettings.getInt(getCurrentPage(workingPage) + "FIRST_NOTE", 0) > 0) {
                                                   Intent intent = new Intent("android.intent.action.trackchallenge");
                                                   startActivity(intent);
                                               }
+                                              debug("404 " + mSettings.getInt(getCurrentPage(workingPage) + "FIRST_NOTE", 0));
                                           }
                                       }
         );
@@ -83,11 +122,10 @@ public class challengesFrame extends AppCompatActivity {
                                            public void onClick(View v) {
                                                //createFiller(mSettings, "SECOND_NOTE", 0);
                                                noteLibrary.setCurrentNote(mSettings, "SECOND_NOTE");
-                                               debug(mSettings.getInt("SECOND_NOTE", 0) + "");
-                                               if (mSettings.getInt("SECOND_NOTE", 0) <= 0) {
+                                               if (mSettings.getInt(getCurrentPage(workingPage) + "SECOND_NOTE", 0) <= 0) {
                                                    Intent intent = new Intent("android.intent.action.newchallenge");
                                                    startActivity(intent);
-                                               } else if (mSettings.getInt("SECOND_NOTE", 0) > 0) {
+                                               } else if (mSettings.getInt(getCurrentPage(workingPage) + "SECOND_NOTE", 0) > 0) {
                                                    Intent intent = new Intent("android.intent.action.trackchallenge");
                                                    startActivity(intent);
                                                }
@@ -98,11 +136,10 @@ public class challengesFrame extends AppCompatActivity {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "THIRD_NOTE", 0);
                                               noteLibrary.setCurrentNote(mSettings, "THIRD_NOTE");
-                                              debug(mSettings.getInt("THIRD_NOTE", 0) + "");
-                                              if (mSettings.getInt("THIRD_NOTE", 0) <= 0) {
+                                              if (mSettings.getInt(getCurrentPage(workingPage) + "THIRD_NOTE", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
-                                              } else if (mSettings.getInt("THIRD_NOTE", 0) > 0) {
+                                              } else if (mSettings.getInt(getCurrentPage(workingPage) + "THIRD_NOTE", 0) > 0) {
                                                   Intent intent = new Intent("android.intent.action.trackchallenge");
                                                   startActivity(intent);
                                               }
@@ -113,11 +150,10 @@ public class challengesFrame extends AppCompatActivity {
                                            public void onClick(View v) {
                                                //createFiller(mSettings, "FOURTH_NOTE", 0);
                                                noteLibrary.setCurrentNote(mSettings, "FOURTH_NOTE");
-                                               debug(mSettings.getInt("FOURTH_NOTE", 0) + "");
-                                               if (mSettings.getInt("FOURTH_NOTE", 0) <= 0) {
+                                               if (mSettings.getInt(getCurrentPage(workingPage) + "FOURTH_NOTE", 0) <= 0) {
                                                    Intent intent = new Intent("android.intent.action.newchallenge");
                                                    startActivity(intent);
-                                               } else if (mSettings.getInt("FOURTH_NOTE", 0) > 0) {
+                                               } else if (mSettings.getInt(getCurrentPage(workingPage) + "FOURTH_NOTE", 0) > 0) {
                                                    Intent intent = new Intent("android.intent.action.trackchallenge");
                                                    startActivity(intent);
                                                }
@@ -128,11 +164,10 @@ public class challengesFrame extends AppCompatActivity {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "FIVTH_NOTE", 0);
                                               noteLibrary.setCurrentNote(mSettings, "FIVTH_NOTE");
-                                              debug(mSettings.getInt("FIVTH_NOTE", 0) + "");
-                                              if (mSettings.getInt("FIVTH_NOTE", 0) <= 0) {
+                                              if (mSettings.getInt(getCurrentPage(workingPage) + "FIVTH_NOTE", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
-                                              } else if (mSettings.getInt("FIVTH_NOTE", 0) > 0) {
+                                              } else if (mSettings.getInt(getCurrentPage(workingPage) + "FIVTH_NOTE", 0) > 0) {
                                                   Intent intent = new Intent("android.intent.action.trackchallenge");
                                                   startActivity(intent);
                                               }
@@ -143,11 +178,10 @@ public class challengesFrame extends AppCompatActivity {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "SIXTH_NOTE", 0);
                                               noteLibrary.setCurrentNote(mSettings, "SIXTH_NOTE");
-                                              debug(mSettings.getInt("SIXTH_NOTE", 0) + "");
-                                              if (mSettings.getInt("SIXTH_NOTE", 0) <= 0) {
+                                              if (mSettings.getInt(getCurrentPage(workingPage) + "SIXTH_NOTE", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
-                                              } else if (mSettings.getInt("SIXTH_NOTE", 0) > 0) {
+                                              } else if (mSettings.getInt(getCurrentPage(workingPage) + "SIXTH_NOTE", 0) > 0) {
                                                   Intent intent = new Intent("android.intent.action.trackchallenge");
                                                   startActivity(intent);
                                               }
@@ -158,11 +192,10 @@ public class challengesFrame extends AppCompatActivity {
                                             public void onClick(View v) {
                                                 //createFiller(mSettings, "SEVENTH_NOTE", 0);
                                                 noteLibrary.setCurrentNote(mSettings, "SEVENTH_NOTE");
-                                                debug(mSettings.getInt("SEVENTH_NOTE", 0) + "");
-                                                if (mSettings.getInt("SEVENTH_NOTE", 0) <= 0) {
+                                                if (mSettings.getInt(getCurrentPage(workingPage) + "SEVENTH_NOTE", 0) <= 0) {
                                                     Intent intent = new Intent("android.intent.action.newchallenge");
                                                     startActivity(intent);
-                                                } else if (mSettings.getInt("SEVENTH_NOTE", 0) > 0) {
+                                                } else if (mSettings.getInt(getCurrentPage(workingPage) + "SEVENTH_NOTE", 0) > 0) {
                                                     Intent intent = new Intent("android.intent.action.trackchallenge");
                                                     startActivity(intent);
                                                 }
@@ -173,11 +206,10 @@ public class challengesFrame extends AppCompatActivity {
                                            public void onClick(View v) {
                                                //createFiller(mSettings, "EIGHTH_NOTE", 0);
                                                noteLibrary.setCurrentNote(mSettings, "EIGHTH_NOTE");
-                                               debug(mSettings.getInt("EIGHTH_NOTE", 0) + "");
-                                               if (mSettings.getInt("EIGHTH_NOTE", 0) <= 0) {
+                                               if (mSettings.getInt(getCurrentPage(workingPage) + "EIGHTH_NOTE", 0) <= 0) {
                                                    Intent intent = new Intent("android.intent.action.newchallenge");
                                                    startActivity(intent);
-                                               } else if (mSettings.getInt("EIGHTH_NOTE", 0) > 0) {
+                                               } else if (mSettings.getInt(getCurrentPage(workingPage) + "EIGHTH_NOTE", 0) > 0) {
                                                    Intent intent = new Intent("android.intent.action.trackchallenge");
                                                    startActivity(intent);
                                                }
@@ -185,17 +217,16 @@ public class challengesFrame extends AppCompatActivity {
                                        }
         );
         note_ninth.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //createFiller(mSettings, "NINTH_NOTE", 0);
-                noteLibrary.setCurrentNote(mSettings, "NINTH_NOTE");
-                debug(mSettings.getInt("NINTH_NOTE", 0) + "");
-                if (mSettings.getInt("NINTH_NOTE", 0) <= 0) {
-                    Intent intent = new Intent("android.intent.action.newchallenge");
+                                          public void onClick(View v) {
+                                              //createFiller(mSettings, "EIGHTH_NOTE", 0);
+                                              noteLibrary.setCurrentNote(mSettings, "NINTH_NOTE");
+                                              if (mSettings.getInt(getCurrentPage(workingPage) + "NINTH_NOTE", 0) <= 0) {
+                                                  Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
-                                              } else if (mSettings.getInt("NINTH_NOTE", 0) > 0) {
-                    Intent intent = new Intent("android.intent.action.trackchallenge");
-                    startActivity(intent);
-                }
+                                              } else if (mSettings.getInt(getCurrentPage(workingPage) + "NINTH_NOTE", 0) > 0) {
+                                                  Intent intent = new Intent("android.intent.action.trackchallenge");
+                                                  startActivity(intent);
+                                              }
                                           }
                                       }
         );
