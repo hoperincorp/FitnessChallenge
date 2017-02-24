@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Fitness Challenge</string>
+
+    <string-array name="types">
+        <item>разы</item>
+        <item>килограммы</item>
+        <item>минуты</item>
+        <item>километры</item>
+
+    </string-array>
 </resources>

@@ -8,11 +8,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.hoperincorp.android.fitnesschallenge.R;
 
-import static com.hoperincorp.android.fitnesschallenge.frames.challengesFrame.testPage;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.APP_PREFERENCES;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.debug;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentNoteName;
@@ -34,6 +34,8 @@ public class currentChallengeFrame extends AppCompatActivity {
         ImageButton panel_delete = (ImageButton) findViewById(R.id.panel_delete);
         ImageButton panel_back = (ImageButton) findViewById(R.id.panel_backward);
 
+        final EditText challengeName = (EditText) findViewById(R.id.challengeName);
+
         debug(mSettings.getInt("CURRENT_NOTE", 0) + "");
 
         panel_accept.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +43,8 @@ public class currentChallengeFrame extends AppCompatActivity {
                                                 SharedPreferences.Editor editor = mSettings.edit();
                                                 editor.putInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)), 1);
                                                 editor.apply();
+
+                                                setChallengeName(mSettings.getInt("CURRENT_PAGE", 0), mSettings, challengeName.getText().toString());
                                                 Intent intent = new Intent("android.intent.action.challengemenu");
                                                 startActivity(intent);
                                             }
@@ -52,7 +56,7 @@ public class currentChallengeFrame extends AppCompatActivity {
                                                 SharedPreferences.Editor editor = mSettings.edit();
                                                 editor.putInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)), 0);
                                                 editor.apply();
-                                                setChallengeName(mSettings, "Нет записи");
+                                                setChallengeName(mSettings.getInt("CURRENT_PAGE", 0), mSettings, "Нет записи");
                                                 Intent intent = new Intent("android.intent.action.challengemenu");
                                                 startActivity(intent);
                                             }

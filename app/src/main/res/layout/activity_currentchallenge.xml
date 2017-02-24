@@ -12,6 +12,18 @@
     android:background="#737077"
     tools:context="com.hoperincorp.android.fitnesschallenge.frames.desktopFrame">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Нет записи"
+        android:ems="10"
+        android:layout_marginTop="14dp"
+        android:id="@+id/challengeName"
+        android:textColor="#B1ACA9"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/panel_backward" />
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

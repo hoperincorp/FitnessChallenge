@@ -15,44 +15,8 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/note_first"
-        android:background="@mipmap/note_add_upgrade"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:scaleType="matrix"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:layout_alignBottom="@+id/note_second"
-        android:layout_alignEnd="@+id/note_fourth" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/note_second"
-        android:background="@mipmap/note_add_upgrade"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:scaleType="matrix"
-        android:scaleX="1"
-        android:scaleY="1" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/note_fourth"
-        android:background="@mipmap/note_add_upgrade"
-        android:layout_below="@+id/note_first"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="35dp"
-        android:scaleType="matrix"
-        android:scaleX="1"
-        android:scaleY="1" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/note_sixth"
-        android:background="@mipmap/note_add_upgrade"
+        android:background="@mipmap/note_add_new_upgrade"
         android:layout_alignTop="@+id/note_fifth"
         android:layout_alignParentEnd="true"
         android:scaleType="matrix"
@@ -62,20 +26,8 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/note_seventh"
-        android:background="@mipmap/note_add_upgrade"
-        android:layout_below="@+id/name_fourth"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp"
-        android:scaleType="matrix"
-        android:scaleX="1"
-        android:scaleY="1" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/note_eighth"
-        android:background="@mipmap/note_add_upgrade"
+        android:background="@mipmap/note_add_new_upgrade"
         android:layout_alignTop="@+id/note_seventh"
         android:layout_alignStart="@+id/note_second"
         android:scaleType="matrix"
@@ -86,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/note_ninth"
-        android:background="@mipmap/note_add_upgrade"
+        android:background="@mipmap/note_add_new_upgrade"
         android:layout_alignTop="@+id/note_eighth"
         android:layout_alignParentEnd="true"
         android:scaleType="matrix"
@@ -131,21 +83,8 @@
         android:text="Нет записи"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/name_first"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="95dp"
-        android:textSize="16sp"
-        android:textColor="#B1ACA9"
-        android:layout_alignEnd="@+id/note_first"
-        android:textAlignment="center" />
-
-    <TextView
-        android:text="Нет записи"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/name_fourth"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textSize="16sp"
         android:textColor="#B1ACA9"
         android:layout_below="@+id/note_fourth"
@@ -184,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name_seventh"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textSize="16sp"
         android:textColor="#B1ACA9"
         android:layout_below="@+id/note_seventh"
@@ -244,28 +183,6 @@
         android:layout_alignParentEnd="true"
         android:textAlignment="center" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/note_fifth"
-        android:background="@mipmap/note_add_upgrade"
-        android:layout_alignTop="@+id/note_fourth"
-        android:layout_alignStart="@+id/name_second"
-        android:scaleType="matrix"
-        android:scaleX="1"
-        android:scaleY="1" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/note_third"
-        android:background="@mipmap/note_add_upgrade"
-        android:scaleType="matrix"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="1"
         android:layout_width="wrap_content"
@@ -276,5 +193,86 @@
         android:layout_alignTop="@+id/panel_prev"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_seventh"
+        android:background="@mipmap/note_add_new_upgrade"
+        android:layout_marginTop="3dp"
+        android:scaleType="matrix"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:layout_below="@+id/name_fourth"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_first"
+        android:background="@mipmap/note_add_new_upgrade"
+        android:scaleType="matrix"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_second"
+        android:background="@mipmap/note_add_new_upgrade"
+        android:scaleType="matrix"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_third"
+        android:background="@mipmap/note_add_new_upgrade"
+        android:scaleType="matrix"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/note_sixth" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_fifth"
+        android:background="@mipmap/note_add_new_upgrade"
+        android:scaleType="matrix"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:layout_alignTop="@+id/note_fourth"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_fourth"
+        android:background="@mipmap/note_add_new_upgrade"
+        android:scaleType="matrix"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:layout_below="@+id/name_first"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp" />
+
+    <TextView
+        android:text="Нет записи"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name_first"
+        android:textSize="16sp"
+        android:textColor="#B1ACA9"
+        android:textAlignment="center"
+        android:layout_below="@+id/note_first"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/note_first"
+        android:layout_marginTop="3dp" />
 
 </RelativeLayout>

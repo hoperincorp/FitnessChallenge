@@ -213,7 +213,7 @@ public class noteLibrary {
     private static void getImageToDraw(int status, ImageButton imageButton) {
         switch (status) {
             case 0:
-                imageButton.setBackgroundResource(R.mipmap.note_add_upgrade);
+                imageButton.setBackgroundResource(R.mipmap.note_add_new_upgrade);
                 break;
             case 1:
                 imageButton.setBackgroundResource(R.mipmap.note_default_color);
@@ -270,17 +270,17 @@ public class noteLibrary {
 
     //region GET EXIST NAME
 
-    public static void getExistName(SharedPreferences mSettings, TextView nameFirst, TextView nameSecond, TextView nameThird,
+    public static void getExistName(int thisPage, SharedPreferences mSettings, TextView nameFirst, TextView nameSecond, TextView nameThird,
                                     TextView nameFourth, TextView nameFivth, TextView nameSixth, TextView nameSeventh, TextView nameEighth, TextView nameNinth) {
-        nameFirst.setText(mSettings.getString("FIRST_NOTE_NAME", "Нет записи"));
-        nameSecond.setText(mSettings.getString("SECOND_NOTE_NAME", "Нет записи"));
-        nameThird.setText(mSettings.getString("THIRD_NOTE_NAME", "Нет записи"));
-        nameFourth.setText(mSettings.getString("FOURTH_NOTE_NAME", "Нет записи"));
-        nameFivth.setText(mSettings.getString("FIVTH_NOTE_NAME", "Нет записи"));
-        nameSixth.setText(mSettings.getString("SIXTH_NOTE_NAME", "Нет записи"));
-        nameSeventh.setText(mSettings.getString("SEVENTH_NOTE_NAME", "Нет записи"));
-        nameEighth.setText(mSettings.getString("EIGHTH_NOTE_NAME", "Нет записи"));
-        nameNinth.setText(mSettings.getString("NINTH_NOTE_NAME", "Нет записи"));
+        nameFirst.setText(mSettings.getString(getCurrentPage(thisPage) + "FIRST_NOTE_NAME", "Нет записи"));
+        nameSecond.setText(mSettings.getString(getCurrentPage(thisPage) + "SECOND_NOTE_NAME", "Нет записи"));
+        nameThird.setText(mSettings.getString(getCurrentPage(thisPage) + "THIRD_NOTE_NAME", "Нет записи"));
+        nameFourth.setText(mSettings.getString(getCurrentPage(thisPage) + "FOURTH_NOTE_NAME", "Нет записи"));
+        nameFivth.setText(mSettings.getString(getCurrentPage(thisPage) + "FIVTH_NOTE_NAME", "Нет записи"));
+        nameSixth.setText(mSettings.getString(getCurrentPage(thisPage) + "SIXTH_NOTE_NAME", "Нет записи"));
+        nameSeventh.setText(mSettings.getString(getCurrentPage(thisPage) + "SEVENTH_NOTE_NAME", "Нет записи"));
+        nameEighth.setText(mSettings.getString(getCurrentPage(thisPage) + "EIGHTH_NOTE_NAME", "Нет записи"));
+        nameNinth.setText(mSettings.getString(getCurrentPage(thisPage) + "NINTH_NOTE_NAME", "Нет записи"));
     }
 
     //endregion
@@ -305,10 +305,10 @@ public class noteLibrary {
 
     //region SET CHALLENGE NAME
 
-    public static void setChallengeName(SharedPreferences mSettings, String name) {
+    public static void setChallengeName(int thisPage, SharedPreferences mSettings, String name) {
         if ((name != null)) {
             SharedPreferences.Editor editor = mSettings.edit();
-            editor.putString(getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_NAME", name);
+            editor.putString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_NAME", name);
             editor.apply();
         }
     }

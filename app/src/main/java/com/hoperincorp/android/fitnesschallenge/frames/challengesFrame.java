@@ -26,7 +26,6 @@ import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.sav
 public class challengesFrame extends AppCompatActivity {
     private SharedPreferences mSettings;
     private int workingPage = 1;
-    public static String testPage = "FIRST_";
 
 
     @Override
@@ -48,15 +47,15 @@ public class challengesFrame extends AppCompatActivity {
         final ImageButton panel_prev = (ImageButton) findViewById(R.id.panel_prev);
         final TextView page = (TextView) findViewById(R.id.pageCurrent);
 
-        TextView nameFirst = (TextView) findViewById(R.id.name_first);
-        TextView nameSecond = (TextView) findViewById(R.id.name_second);
-        TextView nameThird = (TextView) findViewById(R.id.name_third);
-        TextView nameFourth = (TextView) findViewById(R.id.name_fourth);
-        TextView nameFivth = (TextView) findViewById(R.id.name_fifth);
-        TextView nameSixth = (TextView) findViewById(R.id.name_sixth);
-        TextView nameSeventh = (TextView) findViewById(R.id.name_seventh);
-        TextView nameEighth = (TextView) findViewById(R.id.name_eighth);
-        TextView nameNinth = (TextView) findViewById(R.id.name_ninth);
+        final TextView nameFirst = (TextView) findViewById(R.id.name_first);
+        final TextView nameSecond = (TextView) findViewById(R.id.name_second);
+        final TextView nameThird = (TextView) findViewById(R.id.name_third);
+        final TextView nameFourth = (TextView) findViewById(R.id.name_fourth);
+        final TextView nameFivth = (TextView) findViewById(R.id.name_fifth);
+        final TextView nameSixth = (TextView) findViewById(R.id.name_sixth);
+        final TextView nameSeventh = (TextView) findViewById(R.id.name_seventh);
+        final TextView nameEighth = (TextView) findViewById(R.id.name_eighth);
+        final TextView nameNinth = (TextView) findViewById(R.id.name_ninth);
 
         final ImageButton note_first = (ImageButton) findViewById(R.id.note_first);
         final ImageButton note_second = (ImageButton) findViewById(R.id.note_second);
@@ -69,7 +68,7 @@ public class challengesFrame extends AppCompatActivity {
         final ImageButton note_ninth = (ImageButton) findViewById(R.id.note_ninth);
 
         getExistNote(mSettings.getInt("CURRENT_PAGE", 0), mSettings, note_first, note_second, note_third, note_fourth, note_fivth, note_sixth, note_seventh, note_eighth, note_ninth);
-        getExistName(mSettings, nameFirst, nameSecond, nameThird, nameFourth, nameFivth, nameSixth, nameSeventh, nameEighth, nameNinth);
+        getExistName(mSettings.getInt("CURRENT_PAGE", 0), mSettings, nameFirst, nameSecond, nameThird, nameFourth, nameFivth, nameSixth, nameSeventh, nameEighth, nameNinth);
 
         workingPage = mSettings.getInt("CURRENT_PAGE", 0);
         pager(page, workingPage + "");
@@ -88,6 +87,7 @@ public class challengesFrame extends AppCompatActivity {
                                               if ((workingPage >= 1) && (workingPage < 9)) workingPage++;
                                               page.setText(workingPage + "");
                                               getExistNote(workingPage, mSettings, note_first, note_second, note_third, note_fourth, note_fivth, note_sixth, note_seventh, note_eighth, note_ninth);
+                                              getExistName(workingPage, mSettings, nameFirst, nameSecond, nameThird, nameFourth, nameFivth, nameSixth, nameSeventh, nameEighth, nameNinth);
                                               saveCurrentPage(mSettings, getCurrentPage(workingPage));
                                           }
                                       }
@@ -98,6 +98,7 @@ public class challengesFrame extends AppCompatActivity {
                 if ((workingPage > 1) && (workingPage <= 9)) workingPage--;
                 page.setText(workingPage + "");
                 getExistNote(workingPage, mSettings, note_first, note_second, note_third, note_fourth, note_fivth, note_sixth, note_seventh, note_eighth, note_ninth);
+                getExistName(workingPage, mSettings, nameFirst, nameSecond, nameThird, nameFourth, nameFivth, nameSixth, nameSeventh, nameEighth, nameNinth);
                 saveCurrentPage(mSettings, getCurrentPage(workingPage));
                                               }
                                           }
@@ -114,7 +115,6 @@ public class challengesFrame extends AppCompatActivity {
                                                   Intent intent = new Intent("android.intent.action.trackchallenge");
                                                   startActivity(intent);
                                               }
-                                              debug("404 " + mSettings.getInt(getCurrentPage(workingPage) + "FIRST_NOTE", 0));
                                           }
                                       }
         );
