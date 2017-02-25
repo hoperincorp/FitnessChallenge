@@ -3,6 +3,7 @@ package com.hoperincorp.android.fitnesschallenge.frames;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.get
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentPage;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.pager;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.saveCurrentPage;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.setCurrentNote;
 
 public class challengesFrame extends AppCompatActivity {
     private SharedPreferences mSettings;
@@ -39,6 +41,7 @@ public class challengesFrame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(177, 172, 169)));
         setContentView(R.layout.activity_challengemenu);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -70,8 +73,14 @@ public class challengesFrame extends AppCompatActivity {
         getExistNote(mSettings.getInt("CURRENT_PAGE", 0), mSettings, note_first, note_second, note_third, note_fourth, note_fivth, note_sixth, note_seventh, note_eighth, note_ninth);
         getExistName(mSettings.getInt("CURRENT_PAGE", 0), mSettings, nameFirst, nameSecond, nameThird, nameFourth, nameFivth, nameSixth, nameSeventh, nameEighth, nameNinth);
 
-        workingPage = mSettings.getInt("CURRENT_PAGE", 0);
-        pager(page, workingPage + "");
+        if (mSettings.getInt("CURRENT_PAGE", 0) == 0) {
+            setCurrentNote(mSettings, "FIRST_NOTE");
+            workingPage = 1;
+            pager(page, workingPage + "");
+        } else {
+            workingPage = mSettings.getInt("CURRENT_PAGE", 0);
+            pager(page, workingPage + "");
+        }
 
 
         panel_backward.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +116,7 @@ public class challengesFrame extends AppCompatActivity {
         note_first.setOnClickListener(new View.OnClickListener() {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "FIRST_NOTE", 0);
-                                              noteLibrary.setCurrentNote(mSettings, "FIRST_NOTE");
+                                              setCurrentNote(mSettings, "FIRST_NOTE");
                                               if (mSettings.getInt(getCurrentPage(workingPage) + "FIRST_NOTE", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
@@ -121,7 +130,7 @@ public class challengesFrame extends AppCompatActivity {
         note_second.setOnClickListener(new View.OnClickListener() {
                                            public void onClick(View v) {
                                                //createFiller(mSettings, "SECOND_NOTE", 0);
-                                               noteLibrary.setCurrentNote(mSettings, "SECOND_NOTE");
+                                               setCurrentNote(mSettings, "SECOND_NOTE");
                                                if (mSettings.getInt(getCurrentPage(workingPage) + "SECOND_NOTE", 0) <= 0) {
                                                    Intent intent = new Intent("android.intent.action.newchallenge");
                                                    startActivity(intent);
@@ -135,7 +144,7 @@ public class challengesFrame extends AppCompatActivity {
         note_third.setOnClickListener(new View.OnClickListener() {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "THIRD_NOTE", 0);
-                                              noteLibrary.setCurrentNote(mSettings, "THIRD_NOTE");
+                                              setCurrentNote(mSettings, "THIRD_NOTE");
                                               if (mSettings.getInt(getCurrentPage(workingPage) + "THIRD_NOTE", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
@@ -149,7 +158,7 @@ public class challengesFrame extends AppCompatActivity {
         note_fourth.setOnClickListener(new View.OnClickListener() {
                                            public void onClick(View v) {
                                                //createFiller(mSettings, "FOURTH_NOTE", 0);
-                                               noteLibrary.setCurrentNote(mSettings, "FOURTH_NOTE");
+                                               setCurrentNote(mSettings, "FOURTH_NOTE");
                                                if (mSettings.getInt(getCurrentPage(workingPage) + "FOURTH_NOTE", 0) <= 0) {
                                                    Intent intent = new Intent("android.intent.action.newchallenge");
                                                    startActivity(intent);
@@ -163,7 +172,7 @@ public class challengesFrame extends AppCompatActivity {
         note_fivth.setOnClickListener(new View.OnClickListener() {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "FIVTH_NOTE", 0);
-                                              noteLibrary.setCurrentNote(mSettings, "FIVTH_NOTE");
+                                              setCurrentNote(mSettings, "FIVTH_NOTE");
                                               if (mSettings.getInt(getCurrentPage(workingPage) + "FIVTH_NOTE", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
@@ -177,7 +186,7 @@ public class challengesFrame extends AppCompatActivity {
         note_sixth.setOnClickListener(new View.OnClickListener() {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "SIXTH_NOTE", 0);
-                                              noteLibrary.setCurrentNote(mSettings, "SIXTH_NOTE");
+                                              setCurrentNote(mSettings, "SIXTH_NOTE");
                                               if (mSettings.getInt(getCurrentPage(workingPage) + "SIXTH_NOTE", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
@@ -191,7 +200,7 @@ public class challengesFrame extends AppCompatActivity {
         note_seventh.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
                                                 //createFiller(mSettings, "SEVENTH_NOTE", 0);
-                                                noteLibrary.setCurrentNote(mSettings, "SEVENTH_NOTE");
+                                                setCurrentNote(mSettings, "SEVENTH_NOTE");
                                                 if (mSettings.getInt(getCurrentPage(workingPage) + "SEVENTH_NOTE", 0) <= 0) {
                                                     Intent intent = new Intent("android.intent.action.newchallenge");
                                                     startActivity(intent);
@@ -205,7 +214,7 @@ public class challengesFrame extends AppCompatActivity {
         note_eighth.setOnClickListener(new View.OnClickListener() {
                                            public void onClick(View v) {
                                                //createFiller(mSettings, "EIGHTH_NOTE", 0);
-                                               noteLibrary.setCurrentNote(mSettings, "EIGHTH_NOTE");
+                                               setCurrentNote(mSettings, "EIGHTH_NOTE");
                                                if (mSettings.getInt(getCurrentPage(workingPage) + "EIGHTH_NOTE", 0) <= 0) {
                                                    Intent intent = new Intent("android.intent.action.newchallenge");
                                                    startActivity(intent);
@@ -219,7 +228,7 @@ public class challengesFrame extends AppCompatActivity {
         note_ninth.setOnClickListener(new View.OnClickListener() {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "EIGHTH_NOTE", 0);
-                                              noteLibrary.setCurrentNote(mSettings, "NINTH_NOTE");
+                                              setCurrentNote(mSettings, "NINTH_NOTE");
                                               if (mSettings.getInt(getCurrentPage(workingPage) + "NINTH_NOTE", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);

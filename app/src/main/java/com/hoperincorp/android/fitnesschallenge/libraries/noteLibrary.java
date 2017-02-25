@@ -14,6 +14,147 @@ import com.hoperincorp.android.fitnesschallenge.R;
 public class noteLibrary {
     public static final String APP_PREFERENCES = "FitnessChallenger";
 
+    //region GET CURRENT TYPE
+
+    public static void getCurrentType(int thisColor, ImageButton imageButton) {
+        switch (thisColor) {
+            case 1:
+                imageButton.setImageResource(0);
+                break;
+            case 2:
+                imageButton.setImageResource(R.mipmap.workout_1);
+                break;
+            case 3:
+                imageButton.setImageResource(R.mipmap.workout_2);
+                break;
+            case 4:
+                imageButton.setImageResource(R.mipmap.workout_3);
+                break;
+            case 5:
+                imageButton.setImageResource(R.mipmap.workout_4);
+                break;
+            case 6:
+                imageButton.setImageResource(R.mipmap.workout_5);
+                break;
+            case 7:
+                imageButton.setImageResource(R.mipmap.workout_6);
+                break;
+            case 8:
+                imageButton.setImageResource(R.mipmap.workout_7);
+                break;
+            case 9:
+                imageButton.setImageResource(R.mipmap.workout_8);
+                break;
+            case 10:
+                imageButton.setImageResource(R.mipmap.workout_9);
+                break;
+            case 11:
+                imageButton.setImageResource(R.mipmap.workout_10);
+                break;
+            case 12:
+                imageButton.setImageResource(R.mipmap.workout_11);
+                break;
+            case 13:
+                imageButton.setImageResource(R.mipmap.workout_12);
+                break;
+            case 14:
+                imageButton.setImageResource(R.mipmap.workout_13);
+                break;
+            case 15:
+                imageButton.setImageResource(R.mipmap.workout_14);
+                break;
+            case 16:
+                imageButton.setImageResource(R.mipmap.workout_15);
+                break;
+            case 17:
+                imageButton.setImageResource(R.mipmap.workout_16);
+                break;
+            case 18:
+                imageButton.setImageResource(R.mipmap.workout_17);
+                break;
+            case 19:
+                imageButton.setImageResource(R.mipmap.workout_18);
+                break;
+            case 20:
+                imageButton.setImageResource(R.mipmap.workout_19);
+                break;
+            case 21:
+                imageButton.setImageResource(R.mipmap.workout_20);
+                break;
+            case 22:
+                imageButton.setImageResource(R.mipmap.workout_21);
+                break;
+            case 23:
+                imageButton.setImageResource(R.mipmap.workout_22);
+                break;
+            case 24:
+                imageButton.setImageResource(R.mipmap.workout_23);
+                break;
+            case 25:
+                imageButton.setImageResource(R.mipmap.workout_24);
+                break;
+            case 26:
+                imageButton.setImageResource(R.mipmap.workout_25);
+                break;
+            case 27:
+                imageButton.setImageResource(R.mipmap.workout_26);
+                break;
+            case 28:
+                imageButton.setImageResource(R.mipmap.workout_27);
+                break;
+            case 29:
+                imageButton.setImageResource(R.mipmap.workout_28);
+                break;
+            case 30:
+                imageButton.setImageResource(R.mipmap.workout_29);
+                break;
+            case 31:
+                imageButton.setImageResource(R.mipmap.workout_30);
+                break;
+            case 32:
+                imageButton.setImageResource(R.mipmap.workout_31);
+                break;
+        }
+    }
+
+    //endregion
+
+    //region GET CURRENT COLOR
+
+    public static void getCurrentColor(int thisColor, ImageButton imageButton) {
+        switch (thisColor) {
+            case 1:
+                imageButton.setBackgroundResource(R.mipmap.previewimage_default);
+                break;
+            case 2:
+                imageButton.setBackgroundResource(R.mipmap.previewimage_blue);
+                break;
+            case 3:
+                imageButton.setBackgroundResource(R.mipmap.previewimage_cyan);
+                break;
+            case 4:
+                imageButton.setBackgroundResource(R.mipmap.previewimage_green);
+                break;
+            case 5:
+                imageButton.setBackgroundResource(R.mipmap.previewimage_orange);
+                break;
+            case 6:
+                imageButton.setBackgroundResource(R.mipmap.previewimage_purple);
+                break;
+            case 7:
+                imageButton.setBackgroundResource(R.mipmap.previewimage_red);
+                break;
+            case 8:
+                imageButton.setBackgroundResource(R.mipmap.previewimage_white);
+                break;
+            case 9:
+                imageButton.setBackgroundResource(R.mipmap.previewimage_yellow);
+                break;
+        }
+    }
+
+    //endregion
+
     //region PAGER
 
     public static void pager(TextView currentPage, String text) {

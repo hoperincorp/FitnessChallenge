@@ -48,14 +48,6 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/panel_backward"
-        android:background="@mipmap/panel_backward"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/panel_setting"
         android:background="@mipmap/panel_setting"
         android:layout_alignParentBottom="true"
@@ -84,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name_fourth"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         android:textSize="16sp"
         android:textColor="#B1ACA9"
         android:layout_below="@+id/note_fourth"
@@ -123,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name_seventh"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         android:textSize="16sp"
         android:textColor="#B1ACA9"
         android:layout_below="@+id/note_seventh"
@@ -192,14 +184,16 @@
         android:textColor="#B1ACA9"
         android:layout_alignTop="@+id/panel_prev"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp" />
+        android:layout_marginTop="13dp"
+        android:layout_alignEnd="@+id/panel_next"
+        android:layout_marginRight="80dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/note_seventh"
         android:background="@mipmap/note_add_new_upgrade"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="9dp"
         android:scaleType="matrix"
         android:scaleX="1"
         android:scaleY="1"
@@ -260,7 +254,7 @@
         android:scaleY="1"
         android:layout_below="@+id/name_first"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="9dp" />
 
     <TextView
         android:text="Нет записи"
@@ -274,5 +268,13 @@
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/note_first"
         android:layout_marginTop="3dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/panel_backward"
+        android:background="@mipmap/panel_backward"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

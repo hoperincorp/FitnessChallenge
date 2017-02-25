@@ -3,6 +3,7 @@ package com.hoperincorp.android.fitnesschallenge.frames;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,24 +20,37 @@ import com.hoperincorp.android.fitnesschallenge.R;
 
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.APP_PREFERENCES;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.debug;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentColor;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentNoteName;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentPage;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentType;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.setChallengeName;
 
 public class newChallengeFrame extends AppCompatActivity {
     private SharedPreferences mSettings;
     private String[] types = {"разы", "килограммы", "минуты", "километры"};
+    private boolean isType = false, isColor = false;
+    private int currentColor = 1, currentType = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(177, 172, 169)));
         setContentView(R.layout.activity_newchallenge);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
         ImageButton panel_accept = (ImageButton) findViewById(R.id.panel_accept);
         ImageButton panel_back = (ImageButton) findViewById(R.id.panel_backward);
+
+        final ImageButton color_select = (ImageButton) findViewById(R.id.colorSelect);
+        final ImageButton color_preview = (ImageButton) findViewById(R.id.colorPreview);
+        final ImageButton type_select = (ImageButton) findViewById(R.id.typeSelect);
+        final ImageButton type_preview = (ImageButton) findViewById(R.id.typePreview);
+        final ImageButton support_next = (ImageButton) findViewById(R.id.supportNext);
+        final ImageButton support_prev = (ImageButton) findViewById(R.id.supportPrev);
+
 
         final EditText challengeName = (EditText) findViewById(R.id.challengeName);
         final Spinner spinner = (Spinner) findViewById(R.id.types);
@@ -48,6 +62,10 @@ public class newChallengeFrame extends AppCompatActivity {
 
         debug(mSettings.getInt("CURRENT_NOTE", 0) + "");
 
+        color_select.setVisibility(View.INVISIBLE);
+        type_select.setVisibility(View.INVISIBLE);
+
+        //region SPINNER
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -65,6 +83,66 @@ public class newChallengeFrame extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
+
+        //endregion
+
+        support_next.setOnClickListener(new View.OnClickListener() {
+                                            public void onClick(View v) {
+                                                if (isColor && !isType) {
+                                                    if ((currentColor >= 1) && (currentColor < 9)) currentColor++;
+                                                    getCurrentColor(currentColor, color_preview);
+                                                    getCurrentColor(currentColor, type_preview);
+
+                                                } else if (!isColor && isType) {
+                                                    if ((currentType >= 1) && (currentType < 32)) currentType++;
+                                                    getCurrentType(currentType, type_preview);
+                                                }
+                                            }
+                                        }
+        );
+
+        support_prev.setOnClickListener(new View.OnClickListener() {
+                                            public void onClick(View v) {
+                                                if (isColor && !isType) {
+                                                    if ((currentColor > 1) && (currentColor <= 9)) currentColor--;
+                                                    getCurrentColor(currentColor, color_preview);
+                                                    getCurrentColor(currentColor, type_preview);
+
+                                                } else if (!isColor && isType) {
+                                                    if ((currentType > 1) && (currentType <= 32)) currentType--;
+                                                    getCurrentType(currentType, type_preview);
+                                                }
+                                            }
+                                        }
+        );
+
+        color_preview.setOnClickListener(new View.OnClickListener() {
+                                             public void onClick(View v) {
+                                                 color_select.setVisibility(View.VISIBLE);
+                                                 type_select.setVisibility(View.INVISIBLE);
+
+                                                 support_next.setBackgroundResource(R.mipmap.panel_support_next);
+                                                 support_prev.setBackgroundResource(R.mipmap.panel_support_prev);
+
+                                                 isColor = true;
+                                                 isType = false;
+                                             }
+                                         }
+        );
+
+        type_preview.setOnClickListener(new View.OnClickListener() {
+                                            public void onClick(View v) {
+                                                color_select.setVisibility(View.INVISIBLE);
+                                                type_select.setVisibility(View.VISIBLE);
+
+                                                support_next.setBackgroundResource(R.mipmap.panel_support_next);
+                                                support_prev.setBackgroundResource(R.mipmap.panel_support_prev);
+
+                                                isType = true;
+                                                isColor = false;
+                                            }
+                                        }
+        );
 
         panel_accept.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
