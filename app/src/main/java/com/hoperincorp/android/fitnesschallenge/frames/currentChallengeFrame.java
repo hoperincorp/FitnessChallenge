@@ -35,6 +35,7 @@ import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.van
 
 public class currentChallengeFrame extends AppCompatActivity {
     private SharedPreferences mSettings;
+    private int totalCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +73,13 @@ public class currentChallengeFrame extends AppCompatActivity {
                                                     editor.apply();
                                                 }
                                                 if (!countNow.getText().toString().equals("")) {
+                                                    totalCount = mSettings.getInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) +
+                                                            getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COUNT", 0) + Integer.parseInt(countNow.getText().toString());
                                                     SharedPreferences.Editor editor = mSettings.edit();
                                                     editor.putInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) +
-                                                            getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COUNT", Integer.parseInt(countNow.getText().toString()));
+                                                            getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COUNT", totalCount);
                                                     editor.apply();
+
                                                 }
 
                                                 addToHistory(mSettings, dateNow.getText().toString(), timeNow.getText().toString(),
@@ -83,6 +87,7 @@ public class currentChallengeFrame extends AppCompatActivity {
                                                         mSettings.getInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COLOR", 0),
                                                         mSettings.getInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_WORK", 0),
                                                         Integer.parseInt(totalNow.getText().toString()), noteNow.getText().toString(), Integer.parseInt(countNow.getText().toString()));
+
                                                 Intent intent = new Intent("android.intent.action.challengemenu");
                                                 startActivity(intent);
 
