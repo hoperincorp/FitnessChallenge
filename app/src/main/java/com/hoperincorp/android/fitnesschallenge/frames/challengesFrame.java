@@ -117,7 +117,7 @@ public class challengesFrame extends AppCompatActivity {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "FIRST_NOTE", 0);
                                               setCurrentNote(mSettings, "FIRST_NOTE");
-                                              if (mSettings.getInt(getCurrentPage(workingPage) + "FIRST_NOTE", 0) <= 0) {
+                                              if (mSettings.getInt(getCurrentPage(workingPage) + "FIRST_NOTE" + "_COLOR", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
                                               } else if (mSettings.getInt(getCurrentPage(workingPage) + "FIRST_NOTE", 0) > 0) {
@@ -131,7 +131,7 @@ public class challengesFrame extends AppCompatActivity {
                                            public void onClick(View v) {
                                                //createFiller(mSettings, "SECOND_NOTE", 0);
                                                setCurrentNote(mSettings, "SECOND_NOTE");
-                                               if (mSettings.getInt(getCurrentPage(workingPage) + "SECOND_NOTE", 0) <= 0) {
+                                               if (mSettings.getInt(getCurrentPage(workingPage) + "SECOND_NOTE" + "_COLOR", 0) <= 0) {
                                                    Intent intent = new Intent("android.intent.action.newchallenge");
                                                    startActivity(intent);
                                                } else if (mSettings.getInt(getCurrentPage(workingPage) + "SECOND_NOTE", 0) > 0) {
@@ -145,7 +145,7 @@ public class challengesFrame extends AppCompatActivity {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "THIRD_NOTE", 0);
                                               setCurrentNote(mSettings, "THIRD_NOTE");
-                                              if (mSettings.getInt(getCurrentPage(workingPage) + "THIRD_NOTE", 0) <= 0) {
+                                              if (mSettings.getInt(getCurrentPage(workingPage) + "THIRD_NOTE" + "_COLOR", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
                                               } else if (mSettings.getInt(getCurrentPage(workingPage) + "THIRD_NOTE", 0) > 0) {
@@ -159,7 +159,7 @@ public class challengesFrame extends AppCompatActivity {
                                            public void onClick(View v) {
                                                //createFiller(mSettings, "FOURTH_NOTE", 0);
                                                setCurrentNote(mSettings, "FOURTH_NOTE");
-                                               if (mSettings.getInt(getCurrentPage(workingPage) + "FOURTH_NOTE", 0) <= 0) {
+                                               if (mSettings.getInt(getCurrentPage(workingPage) + "FOURTH_NOTE" + "_COLOR", 0) <= 0) {
                                                    Intent intent = new Intent("android.intent.action.newchallenge");
                                                    startActivity(intent);
                                                } else if (mSettings.getInt(getCurrentPage(workingPage) + "FOURTH_NOTE", 0) > 0) {
@@ -173,7 +173,7 @@ public class challengesFrame extends AppCompatActivity {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "FIVTH_NOTE", 0);
                                               setCurrentNote(mSettings, "FIVTH_NOTE");
-                                              if (mSettings.getInt(getCurrentPage(workingPage) + "FIVTH_NOTE", 0) <= 0) {
+                                              if (mSettings.getInt(getCurrentPage(workingPage) + "FIVTH_NOTE" + "_COLOR", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
                                               } else if (mSettings.getInt(getCurrentPage(workingPage) + "FIVTH_NOTE", 0) > 0) {
@@ -187,7 +187,7 @@ public class challengesFrame extends AppCompatActivity {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "SIXTH_NOTE", 0);
                                               setCurrentNote(mSettings, "SIXTH_NOTE");
-                                              if (mSettings.getInt(getCurrentPage(workingPage) + "SIXTH_NOTE", 0) <= 0) {
+                                              if (mSettings.getInt(getCurrentPage(workingPage) + "SIXTH_NOTE" + "_COLOR", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
                                               } else if (mSettings.getInt(getCurrentPage(workingPage) + "SIXTH_NOTE", 0) > 0) {
@@ -201,7 +201,7 @@ public class challengesFrame extends AppCompatActivity {
                                             public void onClick(View v) {
                                                 //createFiller(mSettings, "SEVENTH_NOTE", 0);
                                                 setCurrentNote(mSettings, "SEVENTH_NOTE");
-                                                if (mSettings.getInt(getCurrentPage(workingPage) + "SEVENTH_NOTE", 0) <= 0) {
+                                                if (mSettings.getInt(getCurrentPage(workingPage) + "SEVENTH_NOTE" + "_COLOR", 0) <= 0) {
                                                     Intent intent = new Intent("android.intent.action.newchallenge");
                                                     startActivity(intent);
                                                 } else if (mSettings.getInt(getCurrentPage(workingPage) + "SEVENTH_NOTE", 0) > 0) {
@@ -215,7 +215,7 @@ public class challengesFrame extends AppCompatActivity {
                                            public void onClick(View v) {
                                                //createFiller(mSettings, "EIGHTH_NOTE", 0);
                                                setCurrentNote(mSettings, "EIGHTH_NOTE");
-                                               if (mSettings.getInt(getCurrentPage(workingPage) + "EIGHTH_NOTE", 0) <= 0) {
+                                               if (mSettings.getInt(getCurrentPage(workingPage) + "EIGHTH_NOTE" + "_COLOR", 0) <= 0) {
                                                    Intent intent = new Intent("android.intent.action.newchallenge");
                                                    startActivity(intent);
                                                } else if (mSettings.getInt(getCurrentPage(workingPage) + "EIGHTH_NOTE", 0) > 0) {
@@ -229,7 +229,7 @@ public class challengesFrame extends AppCompatActivity {
                                           public void onClick(View v) {
                                               //createFiller(mSettings, "EIGHTH_NOTE", 0);
                                               setCurrentNote(mSettings, "NINTH_NOTE");
-                                              if (mSettings.getInt(getCurrentPage(workingPage) + "NINTH_NOTE", 0) <= 0) {
+                                              if (mSettings.getInt(getCurrentPage(workingPage) + "NINTH_NOTE" + "_COLOR", 0) <= 0) {
                                                   Intent intent = new Intent("android.intent.action.newchallenge");
                                                   startActivity(intent);
                                               } else if (mSettings.getInt(getCurrentPage(workingPage) + "NINTH_NOTE", 0) > 0) {

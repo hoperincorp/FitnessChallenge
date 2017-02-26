@@ -24,13 +24,16 @@ import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.get
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentNoteName;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentPage;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentType;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.saveNewChallenge;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.setChallengeName;
 
 public class newChallengeFrame extends AppCompatActivity {
     private SharedPreferences mSettings;
     private String[] types = {"разы", "килограммы", "минуты", "километры"};
     private boolean isType = false, isColor = false;
-    private int currentColor = 1, currentType = 1;
+
+    private int currentColor = 1, workoutType = 1, currentTarget = 1;
+    private String currentName = "null", currentType = "null";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class newChallengeFrame extends AppCompatActivity {
 
 
         final EditText challengeName = (EditText) findViewById(R.id.challengeName);
+        final EditText target = (EditText) findViewById(R.id.target);
         final Spinner spinner = (Spinner) findViewById(R.id.types);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, types);
@@ -69,14 +73,14 @@ public class newChallengeFrame extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos,
+            public void onItemSelected(AdapterView<?> parent, View view, int position,
                                        long id) {
                 ((TextView) parent.getChildAt(0)).setTextColor(Color.rgb(159, 112, 48));
                 ((TextView) parent.getChildAt(0)).setBackground(new ColorDrawable(Color.rgb(240, 192, 96)));
                 ((TextView) parent.getChildAt(0)).setTextSize(18);
                 ((TextView) parent.getChildAt(0)).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                /*String item = (String)parent.getItemAtPosition(position);
-                selection.setText(item)*/
+                currentType = (String) parent.getItemAtPosition(position);
+
             }
 
             @Override
@@ -94,8 +98,9 @@ public class newChallengeFrame extends AppCompatActivity {
                                                     getCurrentColor(currentColor, type_preview);
 
                                                 } else if (!isColor && isType) {
-                                                    if ((currentType >= 1) && (currentType < 32)) currentType++;
-                                                    getCurrentType(currentType, type_preview);
+                                                    if ((workoutType >= 1) && (workoutType < 32))
+                                                        workoutType++;
+                                                    getCurrentType(workoutType, type_preview);
                                                 }
                                             }
                                         }
@@ -109,8 +114,9 @@ public class newChallengeFrame extends AppCompatActivity {
                                                     getCurrentColor(currentColor, type_preview);
 
                                                 } else if (!isColor && isType) {
-                                                    if ((currentType > 1) && (currentType <= 32)) currentType--;
-                                                    getCurrentType(currentType, type_preview);
+                                                    if ((workoutType > 1) && (workoutType <= 32))
+                                                        workoutType--;
+                                                    getCurrentType(workoutType, type_preview);
                                                 }
                                             }
                                         }
@@ -151,8 +157,15 @@ public class newChallengeFrame extends AppCompatActivity {
                                                 editor.apply();
 
                                                 setChallengeName(mSettings.getInt("CURRENT_PAGE", 0), mSettings, challengeName.getText().toString());
-                                                Intent intent = new Intent("android.intent.action.challengemenu");
-                                                startActivity(intent);
+
+                                                debug("OIL " + challengeName.getText().toString() + " + " + target.getText().toString());
+                                                if ((!challengeName.getText().toString().equals("")) && (!target.getText().toString().equals(""))) {
+                                                    saveNewChallenge(mSettings, mSettings.getInt("CURRENT_PAGE", 0),
+                                                            challengeName.getText().toString(), currentType, currentColor, workoutType, Integer.parseInt(target.getText().toString()));
+
+                                                    Intent intent = new Intent("android.intent.action.challengemenu");
+                                                    startActivity(intent);
+                                                }
                                             }
                                         }
         );

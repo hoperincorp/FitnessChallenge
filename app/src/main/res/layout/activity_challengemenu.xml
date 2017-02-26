@@ -193,7 +193,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/note_seventh"
         android:background="@mipmap/note_add_new_upgrade"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="12dp"
         android:scaleType="matrix"
         android:scaleX="1"
         android:scaleY="1"
@@ -254,7 +254,7 @@
         android:scaleY="1"
         android:layout_below="@+id/name_first"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="9dp" />
+        android:layout_marginTop="12dp" />
 
     <TextView
         android:text="Нет записи"

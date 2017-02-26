@@ -14,10 +14,31 @@ import com.hoperincorp.android.fitnesschallenge.R;
 public class noteLibrary {
     public static final String APP_PREFERENCES = "FitnessChallenger";
 
+    //region SAVE NEW CHALLENGE
+
+    public static void saveNewChallenge(SharedPreferences mSettings, int thisPage, String name, String type, int color, int typeWorkout, int target) {
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_NAME", name);
+        editor.apply();
+        editor.putString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_TYPE", type);
+        editor.apply();
+        editor.putInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COLOR", color);
+        editor.apply();
+        editor.putInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_WORK", typeWorkout);
+        editor.apply();
+        editor.putInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_TARGET", target);
+        editor.apply();
+    }
+
+    //endregion
+
     //region GET CURRENT TYPE
 
-    public static void getCurrentType(int thisColor, ImageButton imageButton) {
-        switch (thisColor) {
+    public static void getCurrentType(int thisWork, ImageButton imageButton) {
+        switch (thisWork) {
+            case 0:
+                imageButton.setImageResource(0);
+                break;
             case 1:
                 imageButton.setImageResource(0);
                 break;
@@ -123,6 +144,9 @@ public class noteLibrary {
 
     public static void getCurrentColor(int thisColor, ImageButton imageButton) {
         switch (thisColor) {
+            case 0:
+                imageButton.setBackgroundResource(R.mipmap.note_add_new_upgrade);
+                break;
             case 1:
                 imageButton.setBackgroundResource(R.mipmap.previewimage_default);
                 break;
@@ -396,7 +420,28 @@ public class noteLibrary {
     //region GET EXIST NOTE
     public static void getExistNote(int thisPage, SharedPreferences mSettings, ImageButton note_first, ImageButton note_second, ImageButton note_third, ImageButton note_fourth,
                                     ImageButton note_fivth, ImageButton note_sixth, ImageButton note_seventh, ImageButton note_eighth, ImageButton note_ninth) {
-        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "FIRST_NOTE", 0), note_first);
+
+        getCurrentColor(mSettings.getInt(getCurrentPage(thisPage) + "FIRST_NOTE" + "_COLOR", 0), note_first);
+        getCurrentColor(mSettings.getInt(getCurrentPage(thisPage) + "SECOND_NOTE" + "_COLOR", 0), note_second);
+        getCurrentColor(mSettings.getInt(getCurrentPage(thisPage) + "THIRD_NOTE" + "_COLOR", 0), note_third);
+        getCurrentColor(mSettings.getInt(getCurrentPage(thisPage) + "FOURTH_NOTE" + "_COLOR", 0), note_fourth);
+        getCurrentColor(mSettings.getInt(getCurrentPage(thisPage) + "FIVTH_NOTE" + "_COLOR", 0), note_fivth);
+        getCurrentColor(mSettings.getInt(getCurrentPage(thisPage) + "SIXTH_NOTE" + "_COLOR", 0), note_sixth);
+        getCurrentColor(mSettings.getInt(getCurrentPage(thisPage) + "SEVENTH_NOTE" + "_COLOR", 0), note_seventh);
+        getCurrentColor(mSettings.getInt(getCurrentPage(thisPage) + "EIGHTH_NOTE" + "_COLOR", 0), note_eighth);
+        getCurrentColor(mSettings.getInt(getCurrentPage(thisPage) + "NINTH_NOTE" + "_COLOR", 0), note_ninth);
+
+        getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "FIRST_NOTE" + "_WORK", 0), note_first);
+        getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "SECOND_NOTE" + "_WORK", 0), note_second);
+        getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "THIRD_NOTE" + "_WORK", 0), note_third);
+        getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "FOURTH_NOTE" + "_WORK", 0), note_fourth);
+        getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "FIVTH_NOTE" + "_WORK", 0), note_fivth);
+        getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "SIXTH_NOTE" + "_WORK", 0), note_sixth);
+        getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "SEVENTH_NOTE" + "_WORK", 0), note_seventh);
+        getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "EIGHTH_NOTE" + "_WORK", 0), note_eighth);
+        getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "NINTH_NOTE" + "_WORK", 0), note_ninth);
+
+        /*getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "FIRST_NOTE", 0), note_first);
         getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "SECOND_NOTE", 0), note_second);
         getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "THIRD_NOTE", 0), note_third);
         getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "FOURTH_NOTE", 0), note_fourth);
@@ -404,7 +449,7 @@ public class noteLibrary {
         getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "SIXTH_NOTE", 0), note_sixth);
         getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "SEVENTH_NOTE", 0), note_seventh);
         getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "EIGHTH_NOTE", 0), note_eighth);
-        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "NINTH_NOTE", 0), note_ninth);
+        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "NINTH_NOTE", 0), note_ninth);*/
     }
 
     //endregion

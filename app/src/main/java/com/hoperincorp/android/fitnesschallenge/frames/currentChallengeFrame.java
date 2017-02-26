@@ -56,8 +56,14 @@ public class currentChallengeFrame extends AppCompatActivity {
         panel_delete.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
                                                 SharedPreferences.Editor editor = mSettings.edit();
-                                                editor.putInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)), 0);
+                                                editor.putInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) +
+                                                        getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COLOR", 0);
                                                 editor.apply();
+
+                                                editor.putInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) +
+                                                        getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_WORK", 0);
+                                                editor.apply();
+
                                                 setChallengeName(mSettings.getInt("CURRENT_PAGE", 0), mSettings, "Нет записи");
                                                 Intent intent = new Intent("android.intent.action.challengemenu");
                                                 startActivity(intent);
