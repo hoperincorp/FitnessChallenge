@@ -7,12 +7,65 @@ import android.widget.TextView;
 
 import com.hoperincorp.android.fitnesschallenge.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by laker on 23.02.2017.
  */
 
 public class noteLibrary {
     public static final String APP_PREFERENCES = "FitnessChallenger";
+
+    //region VANISHING CHALLENGE
+
+    public static void vanishingChallenge(SharedPreferences mSettings, int thisPage) {
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_NAME", "Нет записи");
+        editor.apply();
+        editor.putString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_TYPE", "разы");
+        editor.apply();
+        editor.putInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COLOR", 0);
+        editor.apply();
+        editor.putInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_WORK", 0);
+        editor.apply();
+        editor.putInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_TARGET", 999);
+        editor.apply();
+        editor.putInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COUNT", 0);
+        editor.apply();
+        editor.putString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_FOOTNOTE", "Примечание");
+        editor.apply();
+    }
+
+    //endregion
+
+    //region LOAD CURRENT CHALLENGE
+
+    public static void loadCurrentChallenge(SharedPreferences mSettings, int thisPage, TextView cDate,
+                                            TextView cTime, ImageButton cButton, TextView cString, TextView cType, TextView cTotal, TextView cFN) {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat data = new SimpleDateFormat("dd-MMM-yyyy");
+        cDate.setText(data.format(c.getTime()));
+        cTime.setText(time.format(c.getTime()));
+
+        getCurrentColor(mSettings.getInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) +
+                getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COLOR", 0), cButton);
+
+        getCurrentType(mSettings.getInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) +
+                getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_WORK", 0), cButton);
+
+        cString.setText(mSettings.getString(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) +
+                getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_NAME", "Нет записи"));
+
+
+        cType.setText(mSettings.getString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_TYPE", "разы"));
+        cTotal.setText(String.valueOf(mSettings.getInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COUNT", 999)));
+        cFN.setText(mSettings.getString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_FOOTNOTE", "Примечание"));
+
+    }
+
+    //endregion
 
     //region SAVE NEW CHALLENGE
 
@@ -27,6 +80,10 @@ public class noteLibrary {
         editor.putInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_WORK", typeWorkout);
         editor.apply();
         editor.putInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_TARGET", target);
+        editor.apply();
+        editor.putInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COUNT", 0);
+        editor.apply();
+        editor.putString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_FOOTNOTE", "Примечание");
         editor.apply();
     }
 
