@@ -19,10 +19,19 @@ public class desktopFrame extends AppCompatActivity {
         setContentView(R.layout.activity_desktop);
 
         ImageButton backward = (ImageButton) findViewById(R.id.panel_addnote);
+        ImageButton history = (ImageButton) findViewById(R.id.panel_history);
 
         backward.setOnClickListener(new View.OnClickListener() {
                                         public void onClick(View v) {
                                             Intent intent = new Intent("android.intent.action.challengemenu");
+                                            startActivity(intent);
+                                        }
+                                    }
+        );
+
+        history.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent("android.intent.action.historychallenge");
                                             startActivity(intent);
                                         }
                                     }

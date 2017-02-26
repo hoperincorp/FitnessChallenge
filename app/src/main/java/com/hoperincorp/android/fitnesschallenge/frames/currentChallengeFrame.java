@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.SimpleTimeZone;
 
+import static com.hoperincorp.android.fitnesschallenge.libraries.historyLibrary.addToHistory;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.APP_PREFERENCES;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.debug;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentColor;
@@ -53,21 +54,21 @@ public class currentChallengeFrame extends AppCompatActivity {
         final TextView typeNow = (TextView) findViewById(R.id.typeNow);
         final TextView totalNow = (TextView) findViewById(R.id.totalNow);
 
-        final EditText footNote = (EditText) findViewById(R.id.noteNow);
+        final EditText noteNow = (EditText) findViewById(R.id.noteNow);
         final EditText countNow = (EditText) findViewById(R.id.countNow);
 
         final ImageButton workoutNow = (ImageButton) findViewById(R.id.workoutNow);
         final TextView workoutString = (TextView) findViewById(R.id.workoutString);
 
-        loadCurrentChallenge(mSettings, mSettings.getInt("CURRENT_PAGE", 0), dateNow, timeNow, workoutNow, workoutString, typeNow, totalNow, footNote);
+        loadCurrentChallenge(mSettings, mSettings.getInt("CURRENT_PAGE", 0), dateNow, timeNow, workoutNow, workoutString, typeNow, totalNow, noteNow);
 
         panel_accept.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
 
-                                                if (!footNote.getText().toString().equals("")) {
+                                                if (!noteNow.getText().toString().equals("")) {
                                                     SharedPreferences.Editor editor = mSettings.edit();
                                                     editor.putString(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) +
-                                                            getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_FOOTNOTE", footNote.getText().toString());
+                                                            getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_FOOTNOTE", noteNow.getText().toString());
                                                     editor.apply();
                                                 }
                                                 if (!countNow.getText().toString().equals("")) {
@@ -76,8 +77,15 @@ public class currentChallengeFrame extends AppCompatActivity {
                                                             getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COUNT", Integer.parseInt(countNow.getText().toString()));
                                                     editor.apply();
                                                 }
-                                                /*Intent intent = new Intent("android.intent.action.challengemenu");
-                                                startActivity(intent);*/
+
+                                                addToHistory(mSettings, dateNow.getText().toString(), timeNow.getText().toString(),
+                                                        workoutString.getText().toString(), typeNow.getText().toString(),
+                                                        mSettings.getInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COLOR", 0),
+                                                        mSettings.getInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_WORK", 0),
+                                                        Integer.parseInt(totalNow.getText().toString()), noteNow.getText().toString(), Integer.parseInt(countNow.getText().toString()));
+                                                Intent intent = new Intent("android.intent.action.challengemenu");
+                                                startActivity(intent);
+
                                             }
                                         }
         );

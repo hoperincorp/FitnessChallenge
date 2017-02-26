@@ -430,50 +430,6 @@ public class noteLibrary {
 
     //endregion
 
-    //region GET IMAGE TO DRAW
-
-    private static void getImageToDraw(int status, ImageButton imageButton) {
-        switch (status) {
-            case 0:
-                imageButton.setBackgroundResource(R.mipmap.note_add_new_upgrade);
-                break;
-            case 1:
-                imageButton.setBackgroundResource(R.mipmap.note_default_color);
-                break;
-            /*case 2:
-                imageButton.setImageResource(R.drawable.contact_accept_blue);
-                imageButton.setBackgroundResource(R.drawable.contact_accept_blue);
-                break;
-            case 3:
-                imageButton.setImageResource(R.drawable.contact_accept_cyan);
-                imageButton.setBackgroundResource(R.drawable.contact_accept_cyan);
-                break;
-            case 4:
-                imageButton.setImageResource(R.drawable.contact_accept_green);
-                imageButton.setBackgroundResource(R.drawable.contact_accept_green);
-                break;
-            case 5:
-                imageButton.setImageResource(R.drawable.contact_accept_orange);
-                imageButton.setBackgroundResource(R.drawable.contact_accept_orange);
-                break;
-            case 6:
-                imageButton.setImageResource(R.drawable.contact_accept_purple);
-                imageButton.setBackgroundResource(R.drawable.contact_accept_purple);
-                break;
-            case 7:
-                imageButton.setImageResource(R.drawable.contact_accept_red);
-                imageButton.setBackgroundResource(R.drawable.contact_accept_red);
-                break;
-            case 8:
-                imageButton.setImageResource(R.drawable.contact_accept_yellow);
-                imageButton.setBackgroundResource(R.drawable.contact_accept_yellow);
-                break;*/
-
-        }
-
-    }
-    //endregion
-
     //region GET EXIST NOTE
     public static void getExistNote(int thisPage, SharedPreferences mSettings, ImageButton note_first, ImageButton note_second, ImageButton note_third, ImageButton note_fourth,
                                     ImageButton note_fivth, ImageButton note_sixth, ImageButton note_seventh, ImageButton note_eighth, ImageButton note_ninth) {
@@ -497,16 +453,6 @@ public class noteLibrary {
         getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "SEVENTH_NOTE" + "_WORK", 0), note_seventh);
         getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "EIGHTH_NOTE" + "_WORK", 0), note_eighth);
         getCurrentType(mSettings.getInt(getCurrentPage(thisPage) + "NINTH_NOTE" + "_WORK", 0), note_ninth);
-
-        /*getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "FIRST_NOTE", 0), note_first);
-        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "SECOND_NOTE", 0), note_second);
-        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "THIRD_NOTE", 0), note_third);
-        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "FOURTH_NOTE", 0), note_fourth);
-        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "FIVTH_NOTE", 0), note_fivth);
-        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "SIXTH_NOTE", 0), note_sixth);
-        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "SEVENTH_NOTE", 0), note_seventh);
-        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "EIGHTH_NOTE", 0), note_eighth);
-        getImageToDraw(mSettings.getInt(getCurrentPage(thisPage) + "NINTH_NOTE", 0), note_ninth);*/
     }
 
     //endregion

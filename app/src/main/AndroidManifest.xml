@@ -47,6 +47,15 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".frames.historyFrame"
+            android:label="History">
+            <intent-filter>
+                <action android:name="android.intent.action.historychallenge" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
 
     </application>
 

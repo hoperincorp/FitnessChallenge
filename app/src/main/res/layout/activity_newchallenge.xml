@@ -15,14 +15,6 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/panel_backward"
-        android:background="@mipmap/panel_backward"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/panel_setting"
         android:background="@mipmap/panel_setting"
         android:layout_alignParentBottom="true"
@@ -136,12 +128,12 @@
         android:text="Нет записи"
         android:ems="10"
         android:id="@+id/challengeName"
-        android:textColor="#9f7030"
         android:background="#f0c060"
         android:paddingBottom="7dp"
         android:textAlignment="center"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textColor="#9f7030" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -211,5 +203,13 @@
         android:background="@mipmap/panel_next"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/panel_backward"
+        android:background="@mipmap/panel_backward"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

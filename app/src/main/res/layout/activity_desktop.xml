@@ -32,7 +32,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton3"
+        android:id="@+id/panel_history"
         android:background="@mipmap/panel_history"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/imageView9"
