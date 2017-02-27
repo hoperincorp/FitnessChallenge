@@ -48,6 +48,7 @@ public class challengesFrame extends AppCompatActivity {
         final ImageButton panel_backward = (ImageButton) findViewById(R.id.panel_backward);
         final ImageButton panel_next = (ImageButton) findViewById(R.id.panel_next);
         final ImageButton panel_prev = (ImageButton) findViewById(R.id.panel_prev);
+        final ImageButton panel_captions = (ImageButton) findViewById(R.id.panel_captions);
         final TextView page = (TextView) findViewById(R.id.pageCurrent);
 
         final TextView nameFirst = (TextView) findViewById(R.id.name_first);
@@ -89,7 +90,15 @@ public class challengesFrame extends AppCompatActivity {
 
         panel_backward.setOnClickListener(new View.OnClickListener() {
                                               public void onClick(View v) {
-                                                  Intent intent = new Intent("android.intent.action.lastdesktop");
+                                                  Intent intent = new Intent("android.intent.action.historychallenge");
+                                                  startActivity(intent);
+                                              }
+                                          }
+        );
+
+        panel_captions.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent("android.intent.action.captions");
                                                   startActivity(intent);
                                               }
                                           }

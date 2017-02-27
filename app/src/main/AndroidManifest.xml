@@ -9,20 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".frames.desktopFrame">
+        <activity android:name=".frames.challengesFrame">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.lastdesktop" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".frames.challengesFrame"
-            android:label="Choose your challenge">
             <intent-filter>
                 <action android:name="android.intent.action.challengemenu" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -61,6 +52,15 @@
             android:label="History">
             <intent-filter>
                 <action android:name="android.intent.action.currenthistory" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".frames.captionsFrame"
+            android:label="Special Thanks!">
+            <intent-filter>
+                <action android:name="android.intent.action.captions" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

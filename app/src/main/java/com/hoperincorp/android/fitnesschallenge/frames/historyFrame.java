@@ -81,7 +81,7 @@ public class historyFrame extends AppCompatActivity {
 
         panel_backward.setOnClickListener(new View.OnClickListener() {
                                               public void onClick(View v) {
-                                                  Intent intent = new Intent("android.intent.action.lastdesktop");
+                                                  Intent intent = new Intent("android.intent.action.challengemenu");
                                                   startActivity(intent);
                                               }
                                           }
@@ -94,7 +94,7 @@ public class historyFrame extends AppCompatActivity {
                                                 editor.apply();
                                                 for (int i = 0; i <= mSettings.getInt("CURRENT_ID", -1); i++)
                                                     removeFromHistory(mSettings, i);
-                                                Intent intent = new Intent("android.intent.action.lastdesktop");
+                                                Intent intent = new Intent("android.intent.action.challengemenu");
                                                 startActivity(intent);
                                             }
                                         }

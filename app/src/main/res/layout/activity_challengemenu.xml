@@ -48,8 +48,8 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/panel_setting"
-        android:background="@mipmap/panel_setting"
+        android:id="@+id/panel_captions"
+        android:background="@mipmap/panel_captions"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
@@ -68,7 +68,7 @@
         android:id="@+id/panel_next"
         android:background="@mipmap/panel_next"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/panel_setting"
+        android:layout_toStartOf="@+id/panel_captions"
         android:layout_marginEnd="5dp" />
 
     <TextView
@@ -273,7 +273,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/panel_backward"
-        android:background="@mipmap/panel_backward"
+        android:background="@mipmap/panel_new_history"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
