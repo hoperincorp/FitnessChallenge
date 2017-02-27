@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -18,6 +19,8 @@ import com.hoperincorp.android.fitnesschallenge.R;
 import java.util.ArrayList;
 
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.APP_PREFERENCES;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.debug;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentNoteName;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentPage;
 
 /**
@@ -42,14 +45,7 @@ public class historyFrame extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.historyNow);
 
-        final String[] challenges = new String[]{
-                "Рыжик", "Барсик", "Мурзик", "Мурка", "Васька",
-                "Томасина", "Кристина", "Пушок", "Дымка", "Кузя",
-                "Китти", "Масяня", "Симба"
-        };
-
-
-        int currentID = mSettings.getInt("CURRENT_ID", 0);
+        final int currentID = mSettings.getInt("CURRENT_ID", 0);
 
         for (int i = 0; i <= currentID; i++) {
             history.add(mSettings.getString(String.valueOf(i) + "_NAME", "Нет записи") + " " +
@@ -62,6 +58,19 @@ public class historyFrame extends AppCompatActivity {
                 R.layout.listview_history, history);
 
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
+                                    long id) {
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.putInt("THIS_ID", position);
+                editor.apply();
+                Intent intent = new Intent("android.intent.action.currenthistory");
+                startActivity(intent);
+
+            }
+        });
 
         panel_backward.setOnClickListener(new View.OnClickListener() {
                                               public void onClick(View v) {

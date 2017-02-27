@@ -42,10 +42,11 @@ public class noteLibrary {
     //region LOAD CURRENT CHALLENGE
 
     public static void loadCurrentChallenge(SharedPreferences mSettings, int thisPage, TextView cDate,
-                                            TextView cTime, ImageButton cButton, TextView cString, TextView cType, TextView cTotal, TextView cFN) {
+                                            TextView cTime, ImageButton cButton, TextView cString, TextView cType, TextView cTotal, TextView cFN, TextView cTarget) {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat time = new SimpleDateFormat("HH:mm");
         SimpleDateFormat data = new SimpleDateFormat("dd-MMM-yyyy");
+
         cDate.setText(data.format(c.getTime()));
         cTime.setText(time.format(c.getTime()));
 
@@ -62,6 +63,7 @@ public class noteLibrary {
         cType.setText(mSettings.getString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_TYPE", "разы"));
         cTotal.setText(String.valueOf(mSettings.getInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COUNT", 999)));
         cFN.setText(mSettings.getString(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_FOOTNOTE", "Примечание"));
+        cTarget.setText(mSettings.getInt(getCurrentPage(thisPage) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_TARGET", 999) + "");
 
     }
 

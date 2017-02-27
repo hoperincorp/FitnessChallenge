@@ -54,6 +54,7 @@ public class currentChallengeFrame extends AppCompatActivity {
         final TextView timeNow = (TextView) findViewById(R.id.timeNow);
         final TextView typeNow = (TextView) findViewById(R.id.typeNow);
         final TextView totalNow = (TextView) findViewById(R.id.totalNow);
+        final TextView targetNow = (TextView) findViewById(R.id.targetNow);
 
         final EditText noteNow = (EditText) findViewById(R.id.noteNow);
         final EditText countNow = (EditText) findViewById(R.id.countNow);
@@ -61,7 +62,7 @@ public class currentChallengeFrame extends AppCompatActivity {
         final ImageButton workoutNow = (ImageButton) findViewById(R.id.workoutNow);
         final TextView workoutString = (TextView) findViewById(R.id.workoutString);
 
-        loadCurrentChallenge(mSettings, mSettings.getInt("CURRENT_PAGE", 0), dateNow, timeNow, workoutNow, workoutString, typeNow, totalNow, noteNow);
+        loadCurrentChallenge(mSettings, mSettings.getInt("CURRENT_PAGE", 0), dateNow, timeNow, workoutNow, workoutString, typeNow, totalNow, noteNow, targetNow);
 
         panel_accept.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
