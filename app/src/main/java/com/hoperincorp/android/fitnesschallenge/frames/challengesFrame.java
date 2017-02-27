@@ -73,6 +73,10 @@ public class challengesFrame extends AppCompatActivity {
         getExistNote(mSettings.getInt("CURRENT_PAGE", 0), mSettings, note_first, note_second, note_third, note_fourth, note_fivth, note_sixth, note_seventh, note_eighth, note_ninth);
         getExistName(mSettings.getInt("CURRENT_PAGE", 0), mSettings, nameFirst, nameSecond, nameThird, nameFourth, nameFivth, nameSixth, nameSeventh, nameEighth, nameNinth);
 
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putInt("isLAST", 0);
+        editor.apply();
+
         if (mSettings.getInt("CURRENT_PAGE", 0) == 0) {
             setCurrentNote(mSettings, "FIRST_NOTE");
             workingPage = 1;

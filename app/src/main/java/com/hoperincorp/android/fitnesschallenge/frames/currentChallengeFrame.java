@@ -31,6 +31,7 @@ import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.get
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getExistNote;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.loadCurrentChallenge;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.setChallengeName;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.setCurrentNote;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.vanishingChallenge;
 
 public class currentChallengeFrame extends AppCompatActivity {
@@ -62,7 +63,12 @@ public class currentChallengeFrame extends AppCompatActivity {
         final ImageButton workoutNow = (ImageButton) findViewById(R.id.workoutNow);
         final TextView workoutString = (TextView) findViewById(R.id.workoutString);
 
-        loadCurrentChallenge(mSettings, mSettings.getInt("CURRENT_PAGE", 0), dateNow, timeNow, workoutNow, workoutString, typeNow, totalNow, noteNow, targetNow);
+        if (mSettings.getInt("isLAST", 0) == 0)
+            loadCurrentChallenge(mSettings, mSettings.getInt("CURRENT_PAGE", 0), dateNow, timeNow, workoutNow, workoutString, typeNow, totalNow, noteNow, targetNow);
+        else if (mSettings.getInt("isLAST", 0) == 1) {
+            setCurrentNote(mSettings, getCurrentNoteName(mSettings.getInt("LAST_NOTE", 0)));
+            loadCurrentChallenge(mSettings, mSettings.getInt("LAST_PAGE", 0), dateNow, timeNow, workoutNow, workoutString, typeNow, totalNow, noteNow, targetNow);
+        }
 
         panel_accept.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
@@ -87,7 +93,14 @@ public class currentChallengeFrame extends AppCompatActivity {
                                                         workoutString.getText().toString(), typeNow.getText().toString(),
                                                         mSettings.getInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_COLOR", 0),
                                                         mSettings.getInt(getCurrentPage(mSettings.getInt("CURRENT_PAGE", 0)) + getCurrentNoteName(mSettings.getInt("CURRENT_NOTE", 0)) + "_WORK", 0),
-                                                        Integer.parseInt(totalNow.getText().toString()), noteNow.getText().toString(), Integer.parseInt(countNow.getText().toString()));
+                                                        Integer.parseInt(targetNow.getText().toString()), noteNow.getText().toString(), Integer.parseInt(countNow.getText().toString()), totalCount);
+
+                                                SharedPreferences.Editor editor = mSettings.edit();
+
+                                                editor.putInt("LAST_NOTE", mSettings.getInt("CURRENT_NOTE", 0));
+                                                editor.apply();
+                                                editor.putInt("LAST_PAGE", mSettings.getInt("CURRENT_PAGE", 0));
+                                                editor.apply();
 
                                                 Intent intent = new Intent("android.intent.action.challengemenu");
                                                 startActivity(intent);

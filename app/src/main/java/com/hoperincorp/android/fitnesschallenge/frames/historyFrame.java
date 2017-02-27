@@ -18,6 +18,7 @@ import com.hoperincorp.android.fitnesschallenge.R;
 
 import java.util.ArrayList;
 
+import static com.hoperincorp.android.fitnesschallenge.libraries.historyLibrary.removeFromHistory;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.APP_PREFERENCES;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.debug;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentNoteName;
@@ -42,16 +43,19 @@ public class historyFrame extends AppCompatActivity {
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
         final ImageButton panel_backward = (ImageButton) findViewById(R.id.panel_backward);
+        final ImageButton panel_delete = (ImageButton) findViewById(R.id.panel_delete);
 
         ListView listView = (ListView) findViewById(R.id.historyNow);
 
         final int currentID = mSettings.getInt("CURRENT_ID", 0);
 
         for (int i = 0; i <= currentID; i++) {
-            history.add(mSettings.getString(String.valueOf(i) + "_NAME", "Нет записи") + " " +
-                    String.valueOf(mSettings.getInt(String.valueOf(i) + "_COUNT_NOW", 0)) + " " +
-                    mSettings.getString(String.valueOf(i) + "_DATE", "14-Фев-1970") + " " +
-                    mSettings.getString(String.valueOf(i) + "_TIME", "23:59"));
+            if (mSettings.getInt(String.valueOf(i) + "_EXIST", 0) == 1) {
+                history.add(mSettings.getString(String.valueOf(i) + "_NAME", "Нет записи") + " " +
+                        String.valueOf(mSettings.getInt(String.valueOf(i) + "_COUNT_NOW", 0)) + " " +
+                        mSettings.getString(String.valueOf(i) + "_DATE", "14-Фев-1970") + " " +
+                        mSettings.getString(String.valueOf(i) + "_TIME", "23:59"));
+            }
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
@@ -66,6 +70,9 @@ public class historyFrame extends AppCompatActivity {
                 SharedPreferences.Editor editor = mSettings.edit();
                 editor.putInt("THIS_ID", position);
                 editor.apply();
+                debug(String.valueOf(mSettings.getInt("THIS_ID", 0)) + "THIS");
+                debug(String.valueOf(position) + "POS");
+
                 Intent intent = new Intent("android.intent.action.currenthistory");
                 startActivity(intent);
 
@@ -78,6 +85,19 @@ public class historyFrame extends AppCompatActivity {
                                                   startActivity(intent);
                                               }
                                           }
+        );
+
+        panel_delete.setOnClickListener(new View.OnClickListener() {
+                                            public void onClick(View v) {
+                                                SharedPreferences.Editor editor = mSettings.edit();
+                                                editor.putInt("CURRENT_ID", -1);
+                                                editor.apply();
+                                                for (int i = 0; i <= mSettings.getInt("CURRENT_ID", -1); i++)
+                                                    removeFromHistory(mSettings, i);
+                                                Intent intent = new Intent("android.intent.action.lastdesktop");
+                                                startActivity(intent);
+                                            }
+                                        }
         );
     }
 }

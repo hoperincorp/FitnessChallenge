@@ -25,9 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/panel_addnote"
         android:layout_toEndOf="@+id/imageView7"
-        android:id="@+id/imageButton2"
+        android:id="@+id/panel_last"
         android:background="@mipmap/panel_lastnote"
-        android:layout_marginStart="174dp" />
+        android:layout_marginStart="174dp"
+        android:visibility="invisible" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -44,6 +45,7 @@
         android:id="@+id/imageButton4"
         android:background="@mipmap/panel_credits"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>

@@ -29,4 +29,13 @@
         android:layout_above="@+id/panel_backward"
         android:layout_alignParentStart="true"
         android:id="@+id/historyNow" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/panel_delete"
+        android:background="@mipmap/panel_delete"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/panel_backward"
+        android:layout_marginStart="5dp" />
 </RelativeLayout>

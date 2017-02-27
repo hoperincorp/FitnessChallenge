@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import com.hoperincorp.android.fitnesschallenge.R;
 
+import static com.hoperincorp.android.fitnesschallenge.libraries.historyLibrary.removeFromHistory;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.APP_PREFERENCES;
+import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.debug;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentColor;
 import static com.hoperincorp.android.fitnesschallenge.libraries.noteLibrary.getCurrentType;
 
@@ -60,17 +62,19 @@ public class historyChallenge extends AppCompatActivity {
 
         workoutString.setText(mSettings.getString(String.valueOf(mSettings.getInt("THIS_ID", 0)) + "_NAME", "Нет записи"));
 
-
-        typeNow.setText(mSettings.getString(String.valueOf(mSettings.getInt("THIS_ID", 0)) + "_TYPE", "разы"));
         totalNow.setText(mSettings.getInt(String.valueOf(mSettings.getInt("THIS_ID", 0)) + "_COUNT", 999) + "");
+        countNow.setText(mSettings.getInt(String.valueOf(mSettings.getInt("THIS_ID", 0)) + "_COUNT_NOW", 999) + "");
+        typeNow.setText(mSettings.getString(String.valueOf(mSettings.getInt("THIS_ID", 0)) + "_TYPE", "разы"));
         noteNow.setText(mSettings.getString(String.valueOf(mSettings.getInt("THIS_ID", 0)) + "_FOOTNOTE", "Примечание"));
         targetNow.setText(mSettings.getInt(String.valueOf(mSettings.getInt("THIS_ID", 0)) + "_TARGET", 999) + "");
 
         countNow.setRawInputType(0x00000000);
         noteNow.setRawInputType(0x00000000);
 
+        panel_accept.setVisibility(View.INVISIBLE);
         panel_delete.setVisibility(View.INVISIBLE);
-        panel_accept.setBackgroundResource(R.mipmap.panel_delete);
+
+        //
 
         panel_back.setOnClickListener(new View.OnClickListener() {
                                           public void onClick(View v) {
@@ -79,5 +83,6 @@ public class historyChallenge extends AppCompatActivity {
                                           }
                                       }
         );
+
     }
 }
